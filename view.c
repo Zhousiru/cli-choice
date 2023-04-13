@@ -221,12 +221,13 @@ void viewQuestionExplorer(int *router, int editor)
             {
                 viewQuestionEditor(list, ret, 0);
                 printAllQuestionsShort(list);
+                return;
             }
             else
             {
                 printQuestion(ret);
+                continue;
             }
-            return;
         }
 
         printf("Error: 无效指令\n");
