@@ -22,7 +22,7 @@ typedef enum
     Easy,
     Normal,
     Hard,
-} Diffculty;
+} Difficulty;
 
 typedef struct
 {
@@ -33,7 +33,7 @@ typedef struct
     char bDesc[MAX_LEN];
     char cDesc[MAX_LEN];
     char dDesc[MAX_LEN];
-    Diffculty diffculty;
+    Difficulty difficulty;
     char point[MAX_LEN];
 } Question;
 
@@ -63,7 +63,7 @@ LinkedList *loadQuestionLib()
         token = strtok(NULL, "|");
         strcpy(q->dDesc, token);
         token = strtok(NULL, "|");
-        q->diffculty = (Diffculty)atoi(token);
+        q->difficulty = (Difficulty)atoi(token);
         token = strtok(NULL, "|");
         if (token[strlen(token) - 1] == '\n')
         {
@@ -89,7 +89,7 @@ void saveQuestionLib(LinkedList *list)
         char buffer[BUFFER_SIZE];
         sprintf(buffer, "%s|%s|%d|%s|%s|%s|%s|%d|%s\n",
                 q->id, q->qDesc, q->answer, q->aDesc, q->bDesc,
-                q->cDesc, q->dDesc, q->diffculty, q->point);
+                q->cDesc, q->dDesc, q->difficulty, q->point);
 
         fputs(buffer, fp);
     }
@@ -168,7 +168,7 @@ void printQuestion(Question *q)
     printf("编号：%s\n", q->id);
     printf("题目描述：%s\n", q->qDesc);
     printf("难度：");
-    switch (q->diffculty)
+    switch (q->difficulty)
     {
     case Easy:
         printf("简单\n");

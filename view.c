@@ -112,19 +112,19 @@ void viewQuestionEditor(LinkedList *list, Question *q, int new)
             {
                 strcpy(q->dDesc, value);
             }
-            else if (strcmp(property, "diffculty") == 0)
+            else if (strcmp(property, "difficulty") == 0)
             {
                 if (strcmp(value, "easy") == 0)
                 {
-                    q->diffculty = Easy;
+                    q->difficulty = Easy;
                 }
                 else if (strcmp(value, "normal") == 0)
                 {
-                    q->diffculty = Normal;
+                    q->difficulty = Normal;
                 }
                 else if (strcmp(value, "hard") == 0)
                 {
-                    q->diffculty = Hard;
+                    q->difficulty = Hard;
                 }
             }
             else if (strcmp(property, "point") == 0)
@@ -207,7 +207,7 @@ void viewQuestionExplorer(int *router, int editor)
             strcpy(new->dDesc, "默认选项描述");
             strcpy(new->point, "默认知识点");
             new->answer = A;
-            new->diffculty = Normal;
+            new->difficulty = Normal;
 
             llAppend(list, new);
             viewQuestionEditor(list, new, 1);
@@ -268,7 +268,7 @@ void viewRandomTest(int *router)
 
     sscanf(input, "%d %s %[^\n]", &num, difficulty, point);
 
-    Diffculty diff;
+    Difficulty diff;
 
     if (strcmp(difficulty, "easy") == 0)
     {
@@ -291,7 +291,7 @@ void viewRandomTest(int *router)
     for (size_t i = 0; i < llLen(list); i++)
     {
         Question *q = llGet(list, i);
-        if (strcmp(q->point, point) == 0 && q->diffculty == diff)
+        if (strcmp(q->point, point) == 0 && q->difficulty == diff)
         {
             qs[cur++] = q;
         }
